@@ -2,15 +2,11 @@
 
 const workBoxes = document.querySelectorAll('.work-box');
 
-
-
-
-
 workBoxes.forEach(workBox => {
-    workBox.addEventListener('mouseover', () => {
-        workBoxes.forEach(p => p.classList.remove('is-open'));
-        workBox.classList.add('is-open');
-    });
+  workBox.addEventListener('mouseover', () => {
+    workBoxes.forEach(p => p.classList.remove('is-open'));
+    workBox.classList.add('is-open');
+  });
 
 });
 
@@ -69,4 +65,24 @@ window.addEventListener('scroll', () => {
     header.classList.remove('visible');
   }
 });
+
+
+const bodyEl = document.getElementById('body-element-container');
+const altEl = document.getElementById('alt-body-element-container');
+const bodyParent = bodyEl.parentNode;
+const bodyNextSibling = bodyEl.nextSibling;
+
+DisableDevtool({
+  disableMenu: false,
+  ondevtoolopen: function (type, next) {
+    if (bodyEl.isConnected) bodyParent.removeChild(bodyEl);
+    altEl.style.display = 'flex';
+  },
+  ondevtoolclose: function () {
+    if (!bodyEl.isConnected) bodyParent.insertBefore(bodyEl, bodyNextSibling);
+    altEl.style.display = 'none';
+  }
+});
+
+
 

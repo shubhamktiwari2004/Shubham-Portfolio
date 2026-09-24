@@ -10,6 +10,7 @@
 
     <script type="module" src="/src/main.jsx"></script>
     <script type="module" src="/src/script2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/disable-devtool"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,43 +27,39 @@
 
     <link rel="stylesheet" href="src/style.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/disable-devtool"></script>
 
-    <script>
-        DisableDevtool({
-            disableMenu: false,
-            ondevtoolopen: function (type, next) {
-                document.getElementById('body-element-container').style.display = 'none';
-                document.getElementById('alt-body-element-container').style.display = 'flex';
-            },
-            ondevtoolclose: function () {
-                document.getElementById('body-element-container').style.display = 'flex';
-                document.getElementById('alt-body-element-container').style.display = 'none';
-            }
-        });
-    </script>
-    
 </head>
 
 <body>
-    <div id="office"></div>
-    <div id="office2"></div>
-    <div id="office3"></div>
-
-    <div id="macImmersion">
-        <div id="macBorder" ></div>
-        <div id="macTopBar">
-            <div id="macNotch"></div>
-        </div>
-    </div>
 
 
-
-    
-
-    
 
     <div id="body-element-container">
+
+        <div id="office">
+
+        </div>
+        <div id="office2">
+            <div id="scroll-down-guide-container">
+                <h1>Scroll down</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100" width="100" height="100">
+                <path fill="#ffffff"
+                    d="M61.67,53.43,52.9,62.2V28.8a2.9,2.9,0,0,0-5.8,0V62.2l-8.77-8.77a2.9,2.9,0,0,0-4.1,4.1L48,71.25a2.88,2.88,0,0,0,2,.85,2.5,2.5,0,0,0,.55,0,2.87,2.87,0,0,0,1.5-.8h0L65.77,57.53a2.9,2.9,0,0,0-4.1-4.1Z" />
+                <path fill="#ffffff"
+                    d="M81.82,18.18a45,45,0,1,0,0,63.64A45,45,0,0,0,81.82,18.18ZM78,78a39.6,39.6,0,1,1,0-56A39.7,39.7,0,0,1,78,78Z" />
+            </svg> 
+            </div>
+            
+
+        </div>
+        <div id="office3"></div>
+
+        <div id="macImmersion">
+            <div id="macBorder"></div>
+            <div id="macTopBar">
+                <div id="macNotch"></div>
+            </div>
+        </div>
 
         <header>
             <div id="header-element-container">
@@ -92,7 +89,8 @@
 
 
 
-                <h1 class="hero-text" id="hero-text-1"> I build across web, systems, Android, <span id="hero-text-2">whatever's interesting.</span></h1>
+                <h1 class="hero-text" id="hero-text-1"> I build across web, systems, Android, <span
+                        id="hero-text-2">whatever's interesting.</span></h1>
 
 
                 <p id="hero-paragraph">Second-year computer science student who learns by building — currently poking
@@ -152,7 +150,7 @@
                 <div class="stats" id="stat7">
 
                     <img id="stat7-myphoto" src="assets/photo.jpg">
-                    <h1 id="stat7-myname">Arshdeep singh</h1> 
+                    <h1 id="stat7-myname">Arshdeep singh</h1>
 
                     <p id="hero-paragraph">
                         Third-year computer science student who learns by building — currently
@@ -261,27 +259,149 @@
 
                     <span class="skill">
 
-                        
-                        <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 108.35 122.88" style="enable-background:new 0 0 108.35 122.88" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#E44D26;} .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#F16529;} .st2{fill-rule:evenodd;clip-rule:evenodd;fill:#EBEBEB;} .st3{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}</style><g><polygon class="st0" points="108.35,0 98.48,110.58 54.11,122.88 9.86,110.6 0,0 108.35,0"/><polygon class="st1" points="54.17,113.48 90.03,103.54 98.46,9.04 54.17,9.04 54.17,113.48"/><path class="st2" d="M34.99,36.17h19.19V22.61H20.16l0.32,3.64l3.33,37.38h30.35V50.06H36.23L34.99,36.17L34.99,36.17L34.99,36.17z M38.04,70.41H24.43l1.9,21.3l27.79,7.71l0.06-0.02V85.29l-0.06,0.02l-15.11-4.08L38.04,70.41L38.04,70.41L38.04,70.41z"/><path class="st3" d="M54.13,63.63h16.7l-1.57,17.59L54.13,85.3v14.11l27.81-7.71l0.2-2.29l3.19-35.71l0.33-3.64H54.13V63.63 L54.13,63.63z M54.13,36.14v0.03h32.76l0.27-3.05l0.62-6.88l0.32-3.64H54.13V36.14L54.13,36.14L54.13,36.14z"/></g></svg>
+
+                        <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="0 0 108.35 122.88" style="enable-background:new 0 0 108.35 122.88"
+                            xml:space="preserve">
+                            <style type="text/css">
+                                .st0 {
+                                    fill-rule: evenodd;
+                                    clip-rule: evenodd;
+                                    fill: #E44D26;
+                                }
+
+                                .st1 {
+                                    fill-rule: evenodd;
+                                    clip-rule: evenodd;
+                                    fill: #F16529;
+                                }
+
+                                .st2 {
+                                    fill-rule: evenodd;
+                                    clip-rule: evenodd;
+                                    fill: #EBEBEB;
+                                }
+
+                                .st3 {
+                                    fill-rule: evenodd;
+                                    clip-rule: evenodd;
+                                    fill: #FFFFFF;
+                                }
+                            </style>
+                            <g>
+                                <polygon class="st0"
+                                    points="108.35,0 98.48,110.58 54.11,122.88 9.86,110.6 0,0 108.35,0" />
+                                <polygon class="st1"
+                                    points="54.17,113.48 90.03,103.54 98.46,9.04 54.17,9.04 54.17,113.48" />
+                                <path class="st2"
+                                    d="M34.99,36.17h19.19V22.61H20.16l0.32,3.64l3.33,37.38h30.35V50.06H36.23L34.99,36.17L34.99,36.17L34.99,36.17z M38.04,70.41H24.43l1.9,21.3l27.79,7.71l0.06-0.02V85.29l-0.06,0.02l-15.11-4.08L38.04,70.41L38.04,70.41L38.04,70.41z" />
+                                <path class="st3"
+                                    d="M54.13,63.63h16.7l-1.57,17.59L54.13,85.3v14.11l27.81-7.71l0.2-2.29l3.19-35.71l0.33-3.64H54.13V63.63 L54.13,63.63z M54.13,36.14v0.03h32.76l0.27-3.05l0.62-6.88l0.32-3.64H54.13V36.14L54.13,36.14L54.13,36.14z" />
+                            </g>
+                        </svg>
 
 
-                        HTML </span>
+                        HTML
+                    </span>
                     <span class="skill">
 
 
-                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 296297 333333" xmlns:xlink="http://www.w3.org/1999/xlink" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><defs><linearGradient id="id4" gradientUnits="userSpaceOnUse" x1="54128.7" y1="79355.5" x2="240318" y2="79355.5"><stop offset="0" stop-color="#e8e7e5"/><stop offset="1" stop-color="#fff"/></linearGradient><linearGradient id="id5" gradientUnits="userSpaceOnUse" x1="62019.3" y1="202868" x2="233515" y2="202868"><stop offset="0" stop-color="#e8e7e5"/><stop offset="1" stop-color="#fff"/></linearGradient><linearGradient id="id6" gradientUnits="userSpaceOnUse" x1="104963" y1="99616.9" x2="104963" y2="171021"><stop offset="0" stop-color="#d1d3d4"/><stop offset=".388" stop-color="#d1d3d4"/><stop offset="1" stop-color="#d1d3d4"/></linearGradient><linearGradient id="id7" gradientUnits="userSpaceOnUse" xlink:href="#id6" x1="194179" y1="61185.8" x2="194179" y2="135407"/><mask id="id0"><linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="104963" y1="99616.9" x2="104963" y2="171021"><stop offset="0" stop-opacity="0" stop-color="#fff"/><stop offset=".388" stop-color="#fff"/><stop offset="1" stop-opacity=".831" stop-color="#fff"/></linearGradient><path fill="url(#id1)" d="M61737 99467h86453v71704H61737z"/></mask><mask id="id2"><linearGradient id="id3" gradientUnits="userSpaceOnUse" x1="194179" y1="61185.8" x2="194179" y2="135407"><stop offset="0" stop-opacity="0" stop-color="#fff"/><stop offset=".388" stop-color="#fff"/><stop offset="1" stop-opacity=".831" stop-color="#fff"/></linearGradient><path fill="url(#id3)" d="M147890 61036h92578v74521h-92578z"/></mask><style>.fil6{fill:#000;fill-opacity:.05098}</style></defs><g id="Layer_x0020_1"><g id="_513085304"><path fill="#2062af" d="M268517 300922l-120369 32411-120371-32411L0 0h296297z"/><path fill="#3c9cd7" d="M148146 24374v283109l273 74 97409-26229 22485-256954z"/><path fill="#fff" d="M148040 99617l-86153 35880 2857 35524 83296-35614 88604-37883 3674-36339-92278 38432z"/><path mask="url(#id0)" fill="url(#id6)" d="M61887 135497l2857 35524 83295-35614V99617z"/><path mask="url(#id2)" fill="url(#id7)" d="M240318 61186l-92278 38431v35790l88604-37883z"/><path fill="url(#id5)" d="M62019 135497l2858 35524 127806 407-2859 47365-42055 11840-40428-10208-2450-29399H67327l4900 56756 75950 22457 75538-22050 9800-112692z"/><path class="fil6" d="M148040 135497H61888l2857 35524 83295 266v-35790zm0 95022l-408 114-40422-10208-2450-29399H67197l4899 56756 75944 22457v-39720z"/><path fill="url(#id4)" d="M54129 61186h186189l-3674 36339H58620l-4491-36339z"/><path class="fil6" d="M148040 61186H54129l4491 36339h89420z"/></g></g></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296297 333333"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" shape-rendering="geometricPrecision"
+                            text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
+                            clip-rule="evenodd">
+                            <defs>
+                                <linearGradient id="id4" gradientUnits="userSpaceOnUse" x1="54128.7" y1="79355.5"
+                                    x2="240318" y2="79355.5">
+                                    <stop offset="0" stop-color="#e8e7e5" />
+                                    <stop offset="1" stop-color="#fff" />
+                                </linearGradient>
+                                <linearGradient id="id5" gradientUnits="userSpaceOnUse" x1="62019.3" y1="202868"
+                                    x2="233515" y2="202868">
+                                    <stop offset="0" stop-color="#e8e7e5" />
+                                    <stop offset="1" stop-color="#fff" />
+                                </linearGradient>
+                                <linearGradient id="id6" gradientUnits="userSpaceOnUse" x1="104963" y1="99616.9"
+                                    x2="104963" y2="171021">
+                                    <stop offset="0" stop-color="#d1d3d4" />
+                                    <stop offset=".388" stop-color="#d1d3d4" />
+                                    <stop offset="1" stop-color="#d1d3d4" />
+                                </linearGradient>
+                                <linearGradient id="id7" gradientUnits="userSpaceOnUse" xlink:href="#id6" x1="194179"
+                                    y1="61185.8" x2="194179" y2="135407" />
+                                <mask id="id0">
+                                    <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="104963" y1="99616.9"
+                                        x2="104963" y2="171021">
+                                        <stop offset="0" stop-opacity="0" stop-color="#fff" />
+                                        <stop offset=".388" stop-color="#fff" />
+                                        <stop offset="1" stop-opacity=".831" stop-color="#fff" />
+                                    </linearGradient>
+                                    <path fill="url(#id1)" d="M61737 99467h86453v71704H61737z" />
+                                </mask>
+                                <mask id="id2">
+                                    <linearGradient id="id3" gradientUnits="userSpaceOnUse" x1="194179" y1="61185.8"
+                                        x2="194179" y2="135407">
+                                        <stop offset="0" stop-opacity="0" stop-color="#fff" />
+                                        <stop offset=".388" stop-color="#fff" />
+                                        <stop offset="1" stop-opacity=".831" stop-color="#fff" />
+                                    </linearGradient>
+                                    <path fill="url(#id3)" d="M147890 61036h92578v74521h-92578z" />
+                                </mask>
+                                <style>
+                                    .fil6 {
+                                        fill: #000;
+                                        fill-opacity: .05098
+                                    }
+                                </style>
+                            </defs>
+                            <g id="Layer_x0020_1">
+                                <g id="_513085304">
+                                    <path fill="#2062af" d="M268517 300922l-120369 32411-120371-32411L0 0h296297z" />
+                                    <path fill="#3c9cd7" d="M148146 24374v283109l273 74 97409-26229 22485-256954z" />
+                                    <path fill="#fff"
+                                        d="M148040 99617l-86153 35880 2857 35524 83296-35614 88604-37883 3674-36339-92278 38432z" />
+                                    <path mask="url(#id0)" fill="url(#id6)"
+                                        d="M61887 135497l2857 35524 83295-35614V99617z" />
+                                    <path mask="url(#id2)" fill="url(#id7)"
+                                        d="M240318 61186l-92278 38431v35790l88604-37883z" />
+                                    <path fill="url(#id5)"
+                                        d="M62019 135497l2858 35524 127806 407-2859 47365-42055 11840-40428-10208-2450-29399H67327l4900 56756 75950 22457 75538-22050 9800-112692z" />
+                                    <path class="fil6"
+                                        d="M148040 135497H61888l2857 35524 83295 266v-35790zm0 95022l-408 114-40422-10208-2450-29399H67197l4899 56756 75944 22457v-39720z" />
+                                    <path fill="url(#id4)" d="M54129 61186h186189l-3674 36339H58620l-4491-36339z" />
+                                    <path class="fil6" d="M148040 61186H54129l4491 36339h89420z" />
+                                </g>
+                            </g>
+                        </svg>
 
-                        
+
 
 
                         CSS</span>
                     <span class="skill">
 
 
-                        <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 109.43" style="enable-background:new 0 0 122.88 109.43" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#00D8FF;}</style><g><path class="st0" d="M122.88,54.73c0-8.14-10.19-15.85-25.82-20.64c3.61-15.93,2-28.6-5.06-32.66c-1.63-0.95-3.53-1.4-5.61-1.4 v5.59c1.15,0,2.08,0.23,2.86,0.65c3.41,1.95,4.88,9.39,3.73,18.96c-0.28,2.35-0.73,4.83-1.28,7.36c-4.91-1.2-10.27-2.13-15.9-2.73 c-3.38-4.63-6.89-8.84-10.42-12.52C73.54,9.74,81.2,5.59,86.41,5.59V0l0,0c-6.89,0-15.9,4.91-25.02,13.43 C52.27,4.96,43.26,0.1,36.37,0.1v5.59c5.18,0,12.87,4.13,21.04,11.67c-3.51,3.68-7.01,7.86-10.34,12.5 c-5.66,0.6-11.02,1.53-15.93,2.75c-0.58-2.5-1-4.93-1.3-7.26c-1.18-9.57,0.28-17.01,3.66-18.99c0.75-0.45,1.73-0.65,2.88-0.65V0.13 l0,0c-2.1,0-4.01,0.45-5.66,1.4c-7.04,4.06-8.62,16.71-4.98,32.59C10.14,38.92,0,46.61,0,54.73c0,8.14,10.19,15.85,25.82,20.64 c-3.61,15.93-2,28.6,5.06,32.66c1.63,0.95,3.53,1.4,5.64,1.4c6.89,0,15.9-4.91,25.02-13.43c9.12,8.47,18.13,13.33,25.02,13.33 c2.1,0,4.01-0.45,5.66-1.4c7.04-4.06,8.62-16.71,4.98-32.59C112.74,70.56,122.88,62.84,122.88,54.73L122.88,54.73z M72.86,54.73 c0-6.32-5.12-11.45-11.45-11.45c-6.32,0-11.45,5.12-11.45,11.45s5.12,11.45,11.45,11.45C67.74,66.17,72.86,61.05,72.86,54.73 L72.86,54.73z M36.34,0.1L36.34,0.1L36.34,0.1L36.34,0.1z M90.27,38.02c-0.93,3.23-2.08,6.56-3.38,9.89c-1.03-2-2.1-4.01-3.28-6.01 c-1.15-2-2.38-3.96-3.61-5.86C83.56,36.57,86.99,37.22,90.27,38.02L90.27,38.02z M78.8,64.7c-1.95,3.38-3.96,6.59-6.04,9.57 c-3.73,0.33-7.51,0.5-11.32,0.5c-3.78,0-7.56-0.18-11.27-0.48c-2.08-2.98-4.11-6.16-6.06-9.52c-1.9-3.28-3.63-6.61-5.21-9.97 c1.55-3.36,3.31-6.71,5.18-9.99c1.95-3.38,3.96-6.59,6.04-9.57c3.73-0.33,7.51-0.5,11.32-0.5c3.78,0,7.56,0.18,11.27,0.48 c2.08,2.98,4.11,6.16,6.06,9.52c1.9,3.28,3.63,6.61,5.21,9.97C82.4,58.06,80.68,61.41,78.8,64.7L78.8,64.7z M86.89,61.44 c1.35,3.36,2.5,6.71,3.46,9.97c-3.28,0.8-6.74,1.48-10.32,2c1.23-1.93,2.45-3.91,3.61-5.94C84.78,65.47,85.86,63.44,86.89,61.44 L86.89,61.44z M61.49,88.16c-2.33-2.4-4.66-5.08-6.96-8.01c2.25,0.1,4.56,0.18,6.89,0.18c2.35,0,4.68-0.05,6.96-0.18 C66.12,83.08,63.79,85.76,61.49,88.16L61.49,88.16z M42.86,73.41c-3.56-0.53-6.99-1.18-10.27-1.98c0.93-3.23,2.08-6.56,3.38-9.89 c1.03,2,2.1,4.01,3.28,6.01C40.43,69.56,41.63,71.51,42.86,73.41L42.86,73.41z M61.36,21.29c2.33,2.4,4.66,5.08,6.96,8.01 c-2.25-0.1-4.56-0.18-6.89-0.18c-2.35,0-4.68,0.05-6.96,0.18C56.73,26.37,59.06,23.69,61.36,21.29L61.36,21.29z M42.83,36.04 c-1.23,1.93-2.45,3.91-3.61,5.94c-1.15,2-2.23,4.01-3.26,6.01c-1.35-3.36-2.5-6.71-3.46-9.97C35.79,37.24,39.25,36.57,42.83,36.04 L42.83,36.04z M20.16,67.4c-8.87-3.78-14.6-8.74-14.6-12.67c0-3.93,5.74-8.92,14.6-12.67c2.15-0.93,4.51-1.75,6.94-2.53 c1.43,4.91,3.31,10.02,5.64,15.25c-2.3,5.21-4.16,10.29-5.56,15.18C24.7,69.18,22.34,68.33,20.16,67.4L20.16,67.4z M33.64,103.19 c-3.41-1.95-4.88-9.39-3.73-18.96c0.28-2.35,0.73-4.83,1.28-7.36c4.91,1.2,10.27,2.13,15.9,2.73c3.38,4.63,6.89,8.84,10.42,12.52 c-8.17,7.59-15.83,11.75-21.04,11.75C35.34,103.84,34.39,103.62,33.64,103.19L33.64,103.19z M93.05,84.11 c1.18,9.57-0.28,17.01-3.66,18.99c-0.75,0.45-1.73,0.65-2.88,0.65c-5.18,0-12.87-4.13-21.04-11.67c3.51-3.68,7.01-7.86,10.34-12.5 c5.66-0.6,11.02-1.53,15.93-2.76C92.32,79.35,92.77,81.78,93.05,84.11L93.05,84.11z M102.69,67.4c-2.15,0.93-4.51,1.75-6.94,2.53 c-1.43-4.91-3.31-10.02-5.64-15.25c2.3-5.21,4.16-10.29,5.56-15.18c2.48,0.78,4.83,1.63,7.04,2.55c8.87,3.78,14.6,8.74,14.6,12.67 C117.29,58.66,111.56,63.64,102.69,67.4L102.69,67.4z"/></g></svg>
-                        
+                        <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="0 0 122.88 109.43" style="enable-background:new 0 0 122.88 109.43"
+                            xml:space="preserve">
+                            <style type="text/css">
+                                .st0 {
+                                    fill-rule: evenodd;
+                                    clip-rule: evenodd;
+                                    fill: #00D8FF;
+                                }
+                            </style>
+                            <g>
+                                <path class="st0"
+                                    d="M122.88,54.73c0-8.14-10.19-15.85-25.82-20.64c3.61-15.93,2-28.6-5.06-32.66c-1.63-0.95-3.53-1.4-5.61-1.4 v5.59c1.15,0,2.08,0.23,2.86,0.65c3.41,1.95,4.88,9.39,3.73,18.96c-0.28,2.35-0.73,4.83-1.28,7.36c-4.91-1.2-10.27-2.13-15.9-2.73 c-3.38-4.63-6.89-8.84-10.42-12.52C73.54,9.74,81.2,5.59,86.41,5.59V0l0,0c-6.89,0-15.9,4.91-25.02,13.43 C52.27,4.96,43.26,0.1,36.37,0.1v5.59c5.18,0,12.87,4.13,21.04,11.67c-3.51,3.68-7.01,7.86-10.34,12.5 c-5.66,0.6-11.02,1.53-15.93,2.75c-0.58-2.5-1-4.93-1.3-7.26c-1.18-9.57,0.28-17.01,3.66-18.99c0.75-0.45,1.73-0.65,2.88-0.65V0.13 l0,0c-2.1,0-4.01,0.45-5.66,1.4c-7.04,4.06-8.62,16.71-4.98,32.59C10.14,38.92,0,46.61,0,54.73c0,8.14,10.19,15.85,25.82,20.64 c-3.61,15.93-2,28.6,5.06,32.66c1.63,0.95,3.53,1.4,5.64,1.4c6.89,0,15.9-4.91,25.02-13.43c9.12,8.47,18.13,13.33,25.02,13.33 c2.1,0,4.01-0.45,5.66-1.4c7.04-4.06,8.62-16.71,4.98-32.59C112.74,70.56,122.88,62.84,122.88,54.73L122.88,54.73z M72.86,54.73 c0-6.32-5.12-11.45-11.45-11.45c-6.32,0-11.45,5.12-11.45,11.45s5.12,11.45,11.45,11.45C67.74,66.17,72.86,61.05,72.86,54.73 L72.86,54.73z M36.34,0.1L36.34,0.1L36.34,0.1L36.34,0.1z M90.27,38.02c-0.93,3.23-2.08,6.56-3.38,9.89c-1.03-2-2.1-4.01-3.28-6.01 c-1.15-2-2.38-3.96-3.61-5.86C83.56,36.57,86.99,37.22,90.27,38.02L90.27,38.02z M78.8,64.7c-1.95,3.38-3.96,6.59-6.04,9.57 c-3.73,0.33-7.51,0.5-11.32,0.5c-3.78,0-7.56-0.18-11.27-0.48c-2.08-2.98-4.11-6.16-6.06-9.52c-1.9-3.28-3.63-6.61-5.21-9.97 c1.55-3.36,3.31-6.71,5.18-9.99c1.95-3.38,3.96-6.59,6.04-9.57c3.73-0.33,7.51-0.5,11.32-0.5c3.78,0,7.56,0.18,11.27,0.48 c2.08,2.98,4.11,6.16,6.06,9.52c1.9,3.28,3.63,6.61,5.21,9.97C82.4,58.06,80.68,61.41,78.8,64.7L78.8,64.7z M86.89,61.44 c1.35,3.36,2.5,6.71,3.46,9.97c-3.28,0.8-6.74,1.48-10.32,2c1.23-1.93,2.45-3.91,3.61-5.94C84.78,65.47,85.86,63.44,86.89,61.44 L86.89,61.44z M61.49,88.16c-2.33-2.4-4.66-5.08-6.96-8.01c2.25,0.1,4.56,0.18,6.89,0.18c2.35,0,4.68-0.05,6.96-0.18 C66.12,83.08,63.79,85.76,61.49,88.16L61.49,88.16z M42.86,73.41c-3.56-0.53-6.99-1.18-10.27-1.98c0.93-3.23,2.08-6.56,3.38-9.89 c1.03,2,2.1,4.01,3.28,6.01C40.43,69.56,41.63,71.51,42.86,73.41L42.86,73.41z M61.36,21.29c2.33,2.4,4.66,5.08,6.96,8.01 c-2.25-0.1-4.56-0.18-6.89-0.18c-2.35,0-4.68,0.05-6.96,0.18C56.73,26.37,59.06,23.69,61.36,21.29L61.36,21.29z M42.83,36.04 c-1.23,1.93-2.45,3.91-3.61,5.94c-1.15,2-2.23,4.01-3.26,6.01c-1.35-3.36-2.5-6.71-3.46-9.97C35.79,37.24,39.25,36.57,42.83,36.04 L42.83,36.04z M20.16,67.4c-8.87-3.78-14.6-8.74-14.6-12.67c0-3.93,5.74-8.92,14.6-12.67c2.15-0.93,4.51-1.75,6.94-2.53 c1.43,4.91,3.31,10.02,5.64,15.25c-2.3,5.21-4.16,10.29-5.56,15.18C24.7,69.18,22.34,68.33,20.16,67.4L20.16,67.4z M33.64,103.19 c-3.41-1.95-4.88-9.39-3.73-18.96c0.28-2.35,0.73-4.83,1.28-7.36c4.91,1.2,10.27,2.13,15.9,2.73c3.38,4.63,6.89,8.84,10.42,12.52 c-8.17,7.59-15.83,11.75-21.04,11.75C35.34,103.84,34.39,103.62,33.64,103.19L33.64,103.19z M93.05,84.11 c1.18,9.57-0.28,17.01-3.66,18.99c-0.75,0.45-1.73,0.65-2.88,0.65c-5.18,0-12.87-4.13-21.04-11.67c3.51-3.68,7.01-7.86,10.34-12.5 c5.66-0.6,11.02-1.53,15.93-2.76C92.32,79.35,92.77,81.78,93.05,84.11L93.05,84.11z M102.69,67.4c-2.15,0.93-4.51,1.75-6.94,2.53 c-1.43-4.91-3.31-10.02-5.64-15.25c2.3-5.21,4.16-10.29,5.56-15.18c2.48,0.78,4.83,1.63,7.04,2.55c8.87,3.78,14.6,8.74,14.6,12.67 C117.29,58.66,111.56,63.64,102.69,67.4L102.69,67.4z" />
+                            </g>
+                        </svg>
 
-                        React JS</span>
+
+                        React JS
+                    </span>
 
                 </div>
 
@@ -552,78 +672,90 @@
                     <div id="work-element-container">
                         <h1 id="work-heading">PixelPull</h1>
                         <h2 id="work-sub-heading">Android wallpaper automation</h2>
-                        <p id="work-paragraph">Built an Android utility with an AI-assisted IDE for automated wallpaper setup — 80% faster than general automation apps, with WorkManager scheduling and CI/CD-driven releases.</p>
-                        <a class="work-link" href="https://chahalarsh.github.io/PixelPull/" target="_blank" rel="noopener noreferrer">View Project →</a>
-                    </div>    
+                        <p id="work-paragraph">Built an Android utility with an AI-assisted IDE for automated wallpaper
+                            setup — 80% faster than general automation apps, with WorkManager scheduling and
+                            CI/CD-driven releases.</p>
+                        <a class="work-link" href="https://chahalarsh.github.io/PixelPull/" target="_blank"
+                            rel="noopener noreferrer">View Project →</a>
+                    </div>
                 </div>
 
-                <div class="work-box" id="work2" >
+                <div class="work-box" id="work2">
                     <div id="work-element-container">
                         <h1 id="work-heading">Portfolio Website</h1>
-                        <p id="work-paragraph">Responsive portfolio site with clean UI, deployed on GitHub Pages plus a self-hosted subdomain for testing live infra changes independently.</p>
-                        <a class="work-link" href="https://github.com/chahalarsh/chahlarsh" target="_blank" rel="noopener noreferrer">View Project →</a>
-                    </div>  
+                        <p id="work-paragraph">Responsive portfolio site with clean UI, deployed on GitHub Pages plus a
+                            self-hosted subdomain for testing live infra changes independently.</p>
+                        <a class="work-link" href="https://github.com/chahalarsh/chahlarsh" target="_blank"
+                            rel="noopener noreferrer">View Project →</a>
+                    </div>
                 </div>
 
                 <div class="work-box" id="work3">
                     <div id="work-element-container">
                         <h1 id="work-heading">Personal HomeLab</h1>
                         <h2 id="work-sub-heading">Self-hosted cloud platform</h2>
-                        <p id="work-paragraph">Deployed CasaOS on a self-hosted VM for containerized services, replacing Google Photos/etc. with Immich, plus a Telegram bot via n8n for real-time alerts and diagnostics.</p>
-                        <a class="work-link" href="https://github.com/chahalarsh/homelab" target="_blank" rel="noopener noreferrer">View Project →</a>
-                    </div>  
+                        <p id="work-paragraph">Deployed CasaOS on a self-hosted VM for containerized services, replacing
+                            Google Photos/etc. with Immich, plus a Telegram bot via n8n for real-time alerts and
+                            diagnostics.</p>
+                        <a class="work-link" href="https://github.com/chahalarsh/homelab" target="_blank"
+                            rel="noopener noreferrer">View Project →</a>
+                    </div>
                 </div>
 
-            
+
 
             </div>
 
         </div>
 
-        <h2>Explore more of my work <a href="https://www.github.com/chahalarsh" class="btn btn-primary">See Projects</a></h2>
+        <h2>Explore more of my work <a href="https://www.github.com/chahalarsh" class="btn btn-primary">See Projects</a>
+        </h2>
 
 
-<footer>
-    <div id="footer-container">
+        <footer>
+            <div id="footer-container">
 
-        <div id="footer-head-container">
-            <h1>Arshdeep Singh Chahal</h1>
-            <p>Building practical tools, experiments, and systems that turn ideas into real-world projects.</p>
-            <a href="mailto:arsh@chahalarsh.in" class="btn btn-primary">Let's Connect ↗</a>
-        </div>
+                <div id="footer-head-container">
+                    <h1>Arshdeep Singh Chahal</h1>
+                    <p>Building practical tools, experiments, and systems that turn ideas into real-world projects.</p>
+                    <a href="mailto:arsh@chahalarsh.in" class="btn btn-primary">Let's Connect ↗</a>
+                </div>
 
-        <div id="footer-body-container">
+                <div id="footer-body-container">
 
-            <div class="footer-body-element-container">
-                <h2>Contact</h2>
-                <ul class="footer-list">
-                    <li><a class="list-item" href="mailto:arsh@chahalarsh.in">Email - arsh@chahalarsh.in</a></li>
-                </ul>
+                    <div class="footer-body-element-container">
+                        <h2>Contact</h2>
+                        <ul class="footer-list">
+                            <li><a class="list-item" href="mailto:arsh@chahalarsh.in">Email - arsh@chahalarsh.in</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-body-element-container">
+                        <h2>Navigation</h2>
+                        <ul class="footer-list">
+                            <li><a class="list-item" href="#hero-section">Overview</a></li>
+                            <li><a class="list-item" href="#stats-section">Stats</a></li>
+                            <li><a class="list-item" href="#Work-section">Projects</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-body-element-container">
+                        <h2>Socials</h2>
+                        <ul class="footer-list">
+                            <li><a class="list-item" href="https://github.com/chahalarsh" target="_blank"
+                                    rel="noopener noreferrer">GitHub</a></li>
+                            <li><a class="list-item" href="https://linkedin.com/in/chahalarsh" target="_blank"
+                                    rel="noopener noreferrer">LinkedIn</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
             </div>
+        </footer>
 
-            <div class="footer-body-element-container">
-                <h2>Navigation</h2>
-                <ul class="footer-list">
-                    <li><a class="list-item" href="#hero-section">Overview</a></li>
-                    <li><a class="list-item" href="#stats-section">Stats</a></li>
-                    <li><a class="list-item" href="#Work-section">Projects</a></li>
-                </ul>
-            </div>
 
-            <div class="footer-body-element-container">
-                <h2>Socials</h2>
-                <ul class="footer-list">
-                    <li><a class="list-item" href="https://github.com/chahalarsh" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                    <li><a class="list-item" href="https://linkedin.com/in/chahalarsh" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-    </div>
-</footer>
-
-        
 
     </div>
 
@@ -637,9 +769,6 @@
 
         </div>
     </div>
-
-   
-
 
 
 

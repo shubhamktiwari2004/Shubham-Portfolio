@@ -7,7 +7,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 createRoot(document.getElementById('office')).render(
   <StrictMode>
     <>
-      <Canvas>
+      <Canvas style={{ pointerEvents: 'none' }} >
         <App />
       </Canvas>
     </>
