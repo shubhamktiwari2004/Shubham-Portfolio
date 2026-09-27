@@ -81,8 +81,12 @@ DisableDevtool({
   ondevtoolclose: function () {
     if (!bodyEl.isConnected) bodyParent.insertBefore(bodyEl, bodyNextSibling);
     altEl.style.display = 'none';
+
+
+    window.location.reload();
+
+
   }
 });
-
 
 

@@ -42,11 +42,11 @@ const office = () => {
         const tl = gsap.timeline({
             defaults: { ease: "none" },
             scrollTrigger: {
-                trigger: "#office",      // or a specific section ref
+                trigger: "#office",  
                 endTrigger: "#office3",
                 start: "top top",
                 end: "middle middle",
-                scrub: 0.3,                    // smooths it, ties directly to scrollbar
+                scrub: 0.3,                   
             },
         })
 
