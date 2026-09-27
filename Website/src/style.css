@@ -14,7 +14,7 @@
 
 
     --page-max-content-width: 1250px;
-    --page-min-content-width: 360px;
+    --page-min-content-width: 550px;
 
 
     --code-block-bg-color: #17181a;
@@ -46,6 +46,10 @@
 
     margin: 0;
     padding: 0;
+}
+
+html, body {
+  overflow-anchor: none;
 }
 
 html {
