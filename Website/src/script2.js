@@ -50,21 +50,61 @@ workBoxes.forEach(workBox => {
 
 
 
-const triggerDiv = document.querySelector('#office3');
+const triggerDiv = document.querySelector('#hero-section');
 const macImmersionEle = document.querySelector('#macImmersion');
+const sideButtons = document.querySelector('#side-buttons');
+const darkModeButton = document.querySelector('#dark-Mode-button');
 const header = document.querySelector('header');
+const root = document.documentElement;
 
 window.addEventListener('scroll', () => {
-  const triggerPosition = triggerDiv.offsetTop + 100;
+  const triggerPosition = triggerDiv.offsetTop - 100;
 
   if (window.scrollY > triggerPosition) {
     macImmersionEle.classList.add('visible');
     header.classList.add('visible');
+    sideButtons.classList.add('visible');
+
   } else {
     macImmersionEle.classList.remove('visible');
     header.classList.remove('visible');
+    sideButtons.classList.remove('visible');
   }
 });
+
+
+const applyTheme = (theme) => {
+  if (theme === 'dark') {
+    root.classList.remove('dark-Mode');
+  } else {
+    root.classList.add('dark-Mode');
+  }
+};
+
+
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    return savedTheme;
+  }
+  
+  const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return userPrefersDark ? 'dark' : 'light';
+};
+
+let currentTheme = getInitialTheme();
+applyTheme(currentTheme);
+
+darkModeButton.addEventListener('click', () => {
+  if(currentTheme === 'dark'){
+    currentTheme = 'light';
+  }else{
+    currentTheme = 'dark';
+  }
+  localStorage.setItem('theme', currentTheme);
+  applyTheme(currentTheme);
+})
+
 
 
 const bodyEl = document.getElementById('body-element-container');
@@ -72,21 +112,71 @@ const altEl = document.getElementById('alt-body-element-container');
 const bodyParent = bodyEl.parentNode;
 const bodyNextSibling = bodyEl.nextSibling;
 
-DisableDevtool({
-  disableMenu: false,
-  ondevtoolopen: function (type, next) {
-    if (bodyEl.isConnected) bodyParent.removeChild(bodyEl);
-    altEl.style.display = 'flex';
-  },
-  ondevtoolclose: function () {
-    if (!bodyEl.isConnected) bodyParent.insertBefore(bodyEl, bodyNextSibling);
-    altEl.style.display = 'none';
+if (typeof window.DisableDevtool === 'function') {
+  window.DisableDevtool({
+    disableMenu: false,
+    ondevtoolopen: function (type, next) {
+      if (bodyEl.isConnected) bodyParent.removeChild(bodyEl);
+      altEl.style.display = 'flex';
+    },
+    ondevtoolclose: function () {
+      if (!bodyEl.isConnected) bodyParent.insertBefore(bodyEl, bodyNextSibling);
+      altEl.style.display = 'none';
+      window.location.reload();
+    }
+  });
+}
 
 
-    window.location.reload();
 
 
-  }
+
+const form = document.getElementById('form');
+const submitBtn = form.querySelector('button[type="submit"]');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    formData.append("access_key", "c70e286e-2f8e-4f23-aeae-92a70f63c62a");
+
+    const originalText = submitBtn.textContent;
+
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            submitBtn.textContent = "Success!"
+            form.reset();
+        } else {
+          submitBtn.textContent = "Error!"
+            
+        }
+
+    } catch (error) {
+        alert("Something went wrong. Please try again.");
+    } finally {
+
+        setTimeout(()=>{
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }, 2000)
+    }
 });
 
 
+
+document.querySelector('.Contactme').addEventListener('click', () => {
+  document.querySelector('#footer-container').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+});

@@ -8,7 +8,7 @@ import { useFrame } from '@react-three/fiber'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const office = () => {
+const Office = () => {
 
     const { camera, scene, gl } = useThree()
 
@@ -43,11 +43,10 @@ const office = () => {
                 trigger: "#office",  
                 endTrigger: "#office3",
                 start: "top top",
-                end: "middle middle",
+                end: "bottom bottom",
                 scrub: 0.3,                   
             },
         })
-
 
         tl.to(model.scene.position, {
             y: "-0.4",
@@ -61,15 +60,12 @@ const office = () => {
         }, 0)
 
         tl.to(model.scene.position, {
-            y: "-0.8",
-            z: "+3",
-            duration: 1
+            y: "-0.6",
+            z: "+1.5",
+
         },1)
 
-        tl.to(":root",{
-            "--body-color": "#111110",
-            duration: 1
-        },1)
+
         
     }, [])
 
@@ -89,4 +85,4 @@ const office = () => {
     )
 }
 
-export default office
+export default Office
