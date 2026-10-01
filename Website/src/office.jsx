@@ -28,9 +28,15 @@ const NOTCH_R = 0.006 // bottom corner radius / screen width
 const SCREEN_R = 0.009 // screen corner radius / screen width
 const FOV_START = 24 // narrow lens while far away
 const FOV_END = 40   // your current fov, so the ending is unchanged
+const MIN_CAMERA_ASPECT = 4 / 3
 
 const lerp = THREE.MathUtils.lerp
 const clamp = THREE.MathUtils.clamp
+const getResponsiveFov = (fov, aspect) => THREE.MathUtils.radToDeg(
+    2 * Math.atan(
+        Math.tan(THREE.MathUtils.degToRad(fov) / 2) * Math.max(1, MIN_CAMERA_ASPECT / aspect),
+    ),
+)
 const easeInOut = gsap.parseEase('power2.inOut')
 const CORNERS = [
     [-1, 1],
@@ -274,8 +280,9 @@ const Office = () => {
     // Render the CSS layer + sync the overlay every frame, after the lid is posed.
     useFrame(({ size }) => {
         const c = css.current
-        if (camera.fov !== fov.current.v) {
-            camera.fov = fov.current.v
+        const responsiveFov = getResponsiveFov(fov.current.v, size.width / size.height)
+        if (camera.fov !== responsiveFov) {
+            camera.fov = responsiveFov
             camera.updateProjectionMatrix()
         }
         if (!c) return
@@ -303,13 +310,13 @@ const Office = () => {
                 trigger: '#office',
                 endTrigger: '#hero-section',
                 start: 'top top',
-                end: 'bottom bottom',
-                scrub: 0.6,
+                end: 'top top',
+                scrub: 1,
             },
         })
 
 
-        tl.to(scrollProgress, { current: 1, duration: 1.5 }, 0.65)
+        tl.to(scrollProgress, { current: 1, duration: 1.5 }, 0.5)
 
         // slow drift in, then a rush toward the laptop
         tl.to(camera.position, { x: 0.5, y: 2.72, z: -1.2, duration: 2.15, ease: 'power2.inOut' }, 0)
@@ -330,7 +337,7 @@ const Office = () => {
             defaults: { ease: 'none' },
             scrollTrigger: {
                 trigger: '#office5',
-                start: 'top bottom',   // as soon as #office5 enters the viewport
+                start: 'top top',   // as soon as #office5 enters the viewport
                 end: 'bottom bottom',  // fully closed at the very bottom of the page
                 scrub: 0.6,
                 invalidateOnRefresh: true,
@@ -368,6 +375,7 @@ const Office = () => {
             <ambientLight intensity={0.02} />
 
             <pointLight position={[-3, 1.5, 0]} intensity={5} color="#ff00ff" distance={8} decay={2} />
+            <ambientLight intensity={0.5} color="#e4daab" distance={8} decay={2}  />
 
             <pointLight position={[3.5, 3, 1]} intensity={35} color="#dee2c6" distance={8} decay={2} />
         </>

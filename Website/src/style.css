@@ -98,6 +98,7 @@ html.lenis body {
 html,
 body {
     overflow-anchor: none;
+    timeline-scope: --logIn, --logOut;
 }
 
 html {
@@ -112,7 +113,8 @@ body {
 
     margin: 0 auto;
     width: 100%;
-    overflow-x: clip; /* no accidental sideways scroll */
+    overflow-x: clip;
+    /* no accidental sideways scroll */
 
     display: flex;
     flex-direction: column;
@@ -323,13 +325,20 @@ header {
     border-radius: 9999px;
 }
 
-#nav-links a {
+#nav-links a,
+#nav-links button {
     color: var(--sub-theme-color);
     line-height: 1.6;
     text-decoration: none;
     background-color: var(--surface);
     padding: 8px 16px;
     border-radius: 999px;
+}
+
+#nav-links button {
+    border: 0;
+    font: inherit;
+    cursor: pointer;
 }
 
 #nav-link-right-btn {
@@ -361,10 +370,12 @@ header {
     min-height: 100svh;
     width: 100%;
 
+
     /* top padding clears the fixed header */
     padding: calc(var(--safe-top) + 120px) var(--gutter) 64px;
-
+    view-timeline: --logIn block;
     background-color: var(--body-color);
+
 }
 
 #hero-section-left-panel {
@@ -374,8 +385,17 @@ header {
     justify-content: center;
     text-align: center;
     max-width: min(860px, 100%);
-    padding-top: 25%;
+    margin-top: 25%;
     padding-bottom: 15%;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#hero-section-left-panel.visible{
+    opacity: 1;
+    visibility: visible;
 }
 
 .hero-text {
@@ -417,7 +437,8 @@ header {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px; /* touch target */
+    min-height: 44px;
+    /* touch target */
 
     font-size: 13px;
     font-weight: 500;
@@ -488,7 +509,7 @@ header {
 
 #stat1 {
     grid-area: gitGraph;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 #stat4 {
@@ -500,7 +521,7 @@ header {
     gap: 8px;
 }
 
-#stat4 > h1 {
+#stat4>h1 {
     font-size: clamp(1rem, 1.6vw, 1.2rem);
     line-height: 1.3;
 }
@@ -597,6 +618,10 @@ header {
     align-items: center;
 }
 
+canvas {
+  filter: saturate(1.5) !important; /* 1.0 is default. 1.5 increases saturation by 50% */
+}
+
 #skills-section-element-container {
     width: 100%;
     max-width: var(--page-max-content-width);
@@ -615,7 +640,7 @@ header {
     gap: clamp(12px, 2vw, 15px);
 }
 
-.skills-box > h2 {
+.skills-box>h2 {
     font-size: clamp(1.2rem, 2.4vw, 1.5rem);
     padding-bottom: 10px;
 }
@@ -668,7 +693,7 @@ header {
     max-width: var(--page-max-content-width);
 }
 
-#Work-section-element-container > h2:last-child {
+#Work-section-element-container>h2:last-child {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -713,7 +738,7 @@ header {
 
 /* Selectors target tags inside the box rather than #work-heading etc.:
    those ids are repeated in the HTML (invalid), so tag selectors are safer */
-.work-box > div {
+.work-box>div {
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -746,7 +771,8 @@ header {
 
 .work-box.is-open h2,
 .work-box.is-open p {
-    max-height: 20rem; /* was 60px, which clipped the paragraphs */
+    max-height: 20rem;
+    /* was 60px, which clipped the paragraphs */
     visibility: visible;
     opacity: 1;
     transform: none;
@@ -853,7 +879,8 @@ footer {
     padding: 15px;
     margin-bottom: 15px;
 
-    font-size: 1rem; /* 16px+ stops iOS zooming on focus */
+    font-size: 1rem;
+    /* 16px+ stops iOS zooming on focus */
     resize: none;
     overflow-y: auto;
 
@@ -975,15 +1002,46 @@ footer {
     pointer-events: none;
 }
 
-#office5{
+#office5 {
     width: 100%;
     height: 250vh;
     height: 250svh;
     pointer-events: none;
+
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+
+    view-timeline: --logOut block;
+
+    #scroll-Up-guide-container {
+        animation: float 1.5s ease-in-out infinite;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        position: absolute;
+        bottom: calc(clamp(40px, 12vh, 100px) + var(--safe-bottom));
+
+        padding-bottom: 5%;
+
+
+        h1 {
+            color: #ffffff;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+
+        svg {
+            rotate: 180deg;
+            width: clamp(20px, 5vw, 50px);
+            height: auto;
+        }
+    }
 }
 
-/* NOTE: don't put a transform on #macImmersion itself. It would become the
-   containing block for the position: fixed top bar. Animate the children. */
 #macImmersion {
     opacity: 0;
     visibility: hidden;
@@ -1061,9 +1119,10 @@ header.visible,
     visibility: visible;
 }
 
-#mac-screen{
+#mac-screen {
     background-color: var(--body-color) !important;
-    h1{
+
+    h1 {
         color: var(--sub-theme-color) !important;
     }
 }
@@ -1094,26 +1153,133 @@ header.visible,
     border-radius: 20px;
 }
 
-.react-activity-calendar rect[data-level="0"] { fill: var(--g0) !important; }
-.react-activity-calendar rect[data-level="1"] { fill: var(--g1) !important; }
-.react-activity-calendar rect[data-level="2"] { fill: var(--g2) !important; }
-.react-activity-calendar rect[data-level="3"] { fill: var(--g3) !important; }
-.react-activity-calendar rect[data-level="4"] { fill: var(--g4) !important; }
+.react-activity-calendar rect[data-level="0"] {
+    fill: var(--g0) !important;
+}
+
+.react-activity-calendar rect[data-level="1"] {
+    fill: var(--g1) !important;
+}
+
+.react-activity-calendar rect[data-level="2"] {
+    fill: var(--g2) !important;
+}
+
+.react-activity-calendar rect[data-level="3"] {
+    fill: var(--g3) !important;
+}
+
+.react-activity-calendar rect[data-level="4"] {
+    fill: var(--g4) !important;
+}
 
 .Contactme {
     cursor: pointer;
 }
 
+
+#mac-screen-content {
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    #appleBarBackground {
+        width: 300px;
+        height: 6px;
+        border-radius: 9999px;
+        background-color: var(--alt-border-color);
+        margin-top: 20px;
+
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        #appleBarProgress {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background-color: var(--sub-theme-color);
+
+            animation: grow linear both;
+            animation-timeline: --logIn;
+
+            animation-range: entry -100% exit -50%;
+        }
+    }
+}
+
+
+#alt-mac-screen-content{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    #altAppleBarBackground {
+        width: 300px;
+        height: 6px;
+        border-radius: 9999px;
+        background-color: var(--alt-border-color);
+        margin-top: 20px;
+
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        #altAppleBarProgress {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background-color: var(--sub-theme-color);
+
+            animation: grow linear both;
+            animation-timeline: --logOut;
+
+            animation-range: entry -100% exit -50%;
+        }
+    }
+
+}
+
+
+@keyframes grow {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /* hover only where a real hover exists (avoids sticky hover on touch) */
 @media (hover: hover) {
-    #nav-links a:hover { background-color: var(--surface-hover); }
-    .icon-btn:hover { background: var(--surface-hover); }
-    .work-link:hover { filter: brightness(1.1); }
+    #nav-links a:hover,
+    #nav-links button:hover {
+        background-color: var(--surface-hover);
+    }
+
+    .icon-btn:hover {
+        background: var(--surface-hover);
+    }
+
+    .work-link:hover {
+        filter: brightness(1.1);
+    }
 }
 
 /* =========================================================
@@ -1122,13 +1288,20 @@ header.visible,
 
 /* Large / ultra-wide */
 @media (min-width: 1800px) {
-    :root { --page-max-content-width: min(1400px, 100%); }
-    .work-box { height: 460px; }
+    :root {
+        --page-max-content-width: min(1400px, 100%);
+    }
+
+    .work-box {
+        height: 460px;
+    }
 }
 
 /* Small laptops / tablet landscape */
 @media (max-width: 1100px) {
-    :root { --page-max-content-width: min(960px, 100%); }
+    :root {
+        --page-max-content-width: min(960px, 100%);
+    }
 
     /* work cards become a vertical accordion */
     #work-container {
@@ -1164,7 +1337,9 @@ header.visible,
 
 /* Tablet portrait: swap the 4-col grid for a 2-col one */
 @media (max-width: 960px) {
-    #nav-links { display: none; }
+    #nav-links {
+        display: none;
+    }
 
     #header-element-container {
         display: flex;
@@ -1180,15 +1355,24 @@ header.visible,
             "a nums";
     }
 
-    #stat7-myphoto { max-width: 280px; }
-    #stat6 { min-height: 180px; }
+    #stat7-myphoto {
+        max-width: 280px;
+    }
+
+    #stat6 {
+        min-height: 180px;
+    }
 }
 
 /* Phones */
 @media (max-width: 600px) {
-    :root { --page-max-content-width: 100%; }
+    :root {
+        --page-max-content-width: 100%;
+    }
 
-    header { padding-block: 10px; }
+    header {
+        padding-block: 10px;
+    }
 
     #nav-link-right-btn {
         padding: 8px 14px;
@@ -1208,35 +1392,68 @@ header.visible,
             "a";
     }
 
-    #stat4 { gap: 12px; padding-block: 24px; }
-    #stat6 { min-height: 120px; }
+    #stat4 {
+        gap: 12px;
+        padding-block: 24px;
+    }
 
-    .react-activity-calendar__footer { display: none !important; }
+    #stat6 {
+        min-height: 120px;
+    }
 
-    .work-box.is-open { height: 500px; }
+    .react-activity-calendar__footer {
+        display: none !important;
+    }
 
-    .skills-box > .skill { margin: 3px; padding: 7px 12px; }
+    .work-box.is-open {
+        height: 500px;
+    }
+
+    .skills-box>.skill {
+        margin: 3px;
+        padding: 7px 12px;
+    }
 
     #footer-form-btns {
         flex-direction: column;
         align-items: stretch;
     }
 
-    #footer-form-btns .btn { width: 100%; }
+    #footer-form-btns .btn {
+        width: 100%;
+    }
 
-    .footer-list { margin-left: 0; }
+    .footer-list {
+        margin-left: 0;
+    }
 }
 
 /* Very small phones */
 @media (max-width: 360px) {
-    #logo { font-size: 0.95rem; }
-    .hero-tag { padding: 4px 10px; }
-    .work-box.is-open { height: 560px; }
+    #logo {
+        font-size: 0.95rem;
+    }
+
+    .hero-tag {
+        padding: 4px 10px;
+    }
+
+    .work-box.is-open {
+        height: 560px;
+    }
 }
 
 /* Portrait or touch: the laptop-bezel effect only makes sense on desktop */
-@media (max-aspect-ratio: 4/3), (hover: none), (max-width: 900px) {
-    #macImmersion { display: none; }
+@media (max-aspect-ratio: 4/3),
+(hover: none),
+(max-width: 900px) {
+    #macImmersion {
+        display: none;
+    }
+
+    header {
+        top: calc(var(--safe-top) + 15px);
+    }
 }
 
 /* Short landscape screens (phones turned sideways) */
@@ -1247,8 +1464,14 @@ header.visible,
         padding-bottom: 32px;
     }
 
-    header { top: calc(var(--safe-top) + 8px); padding-block: 8px; }
-    #office2 #scroll-down-guide-container { bottom: 16px; }
+    header {
+        top: calc(var(--safe-top) + 8px);
+        padding-block: 8px;
+    }
+
+    #office2 #scroll-down-guide-container {
+        bottom: 16px;
+    }
 }
 
 /* Notched phones in landscape */
@@ -1261,18 +1484,35 @@ header.visible,
 
 /* Touch: bigger targets */
 @media (pointer: coarse) {
-    .icon-btn { width: 48px; height: 48px; }
+    .icon-btn {
+        width: 48px;
+        height: 48px;
+    }
 }
 
 /* Print */
 @media print {
-    header, #side-buttons, #macImmersion, #office, #office2, #office3 { display: none !important; }
-    #primary-body-content { opacity: 1 !important; visibility: visible !important; }
+
+    header,
+    #side-buttons,
+    #macImmersion,
+    #office,
+    #office2,
+    #office3 {
+        display: none !important;
+    }
+
+    #primary-body-content {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
 }
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    :root { scroll-behavior: auto; }
+    :root {
+        scroll-behavior: auto;
+    }
 
     *,
     *::before,

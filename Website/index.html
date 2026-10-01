@@ -14,9 +14,8 @@
     <meta property="og:description" content="Web apps, Android tools and self-hosted systems.">
     <meta property="og:type" content="website">
 
-
-    <script type="module" src="/src/main.jsx"></script>
     <script type="module" src="/src/script2.js"></script>
+    <script type="module" src="/src/main.jsx" ></script>
     <script src="https://cdn.jsdelivr.net/npm/disable-devtool"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,11 +85,11 @@
                 <h1 id="logo">Arshdeep Singh Chahal</h1>
 
                 <nav id="nav-links" aria-label="Primary">
-                    <a href="#Work-section">Projects</a>
+                    <button type="button" data-scroll-target="Work-section">Projects</button>
                     <a href="https://www.github.com/chahalarsh" target="_blank" rel="noopener noreferrer">GitHub</a>
                     <a href="https://www.linkedin.com/in/chahalarsh" target="_blank"
                         rel="noopener noreferrer">LinkedIn</a>
-                    <a class="Contactme" href="#footer-container">Contact</a>
+                    <button type="button" class="Contactme" data-scroll-target="moreProjects">Contact</button>
                 </nav>
 
                 <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary"
@@ -98,7 +97,7 @@
             </div>
         </header>
 
-        
+
 
         <div id="primary-body-content">
 
@@ -108,7 +107,8 @@
 
 
 
-                    <h1 class="hero-text" id="hero-text-1">Hey, I am a software developer building web apps, Android tools and
+                    <h1 class="hero-text" id="hero-text-1">Hey, I am a software developer building web apps, Android
+                        tools and
                         <span id="hero-text-2">self-hosted systems.</span>
                     </h1>
 
@@ -123,7 +123,7 @@
                         <span class="hero-tag">#linux</span>
                     </div>
                     <div class="hero-actions">
-                        <a href="#Work-section" class="btn btn-primary hero-btn">View projects →</a>
+                        <button type="button" class="btn btn-primary hero-btn" data-scroll-target="Work-section">View projects →</button>
                     </div>
 
 
@@ -137,7 +137,7 @@
                 <div id="stats-container">
 
                     <div class="stats" id="stat1">
-                        
+
                     </div>
 
                     <div class="stats" id="stat4">
@@ -727,7 +727,7 @@
 
                     </div>
 
-                    <h2>More projects on GitHub
+                    <h2 id="moreProjects">More projects on GitHub
                         <a href="https://www.github.com/chahalarsh" target="_blank" rel="noopener noreferrer"
                             class="btn btn-primary">All repositories ↗</a>
                     </h2>
@@ -805,13 +805,20 @@
         </footer>
 
         <div id="office5">
+            <div id="scroll-Up-guide-container">
+                <h1>Scroll Up</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100" width="100"
+                    height="100">
+                    <path fill="#ffffff"
+                        d="M61.67,53.43,52.9,62.2V28.8a2.9,2.9,0,0,0-5.8,0V62.2l-8.77-8.77a2.9,2.9,0,0,0-4.1,4.1L48,71.25a2.88,2.88,0,0,0,2,.85,2.5,2.5,0,0,0,.55,0,2.87,2.87,0,0,0,1.5-.8h0L65.77,57.53a2.9,2.9,0,0,0-4.1-4.1Z" />
+                    <path fill="#ffffff"
+                        d="M81.82,18.18a45,45,0,1,0,0,63.64A45,45,0,0,0,81.82,18.18ZM78,78a39.6,39.6,0,1,1,0-56A39.7,39.7,0,0,1,78,78Z" />
+                </svg>
+            </div>
 
         </div>
 
     </div>
-
-
-
 
 
     </div>
@@ -821,12 +828,15 @@
     <div id="alt-body-element-container">
 
         <h1 id="alt-body-section-heading">Curious how this site is built?</h1>
-        <a href="https://github.com/chahalarsh/chahlarsh" target="_blank" rel="noopener noreferrer"
-            class="btn btn-primary">View the source ↗</a>
+
+
+        <video id="demoVideo" playsinline preload="auto" style="display:none; width:100%; max-width:900px; border-radius:var(--box-radius);">
+  <source src="/assets/video.mp4" type="video/mp4">
+</video>
+
+<a href="#" id="videoBtn" class="btn btn-primary">See How? ↗</a>
+
     </div>
-
-
-
 
 </body>
 

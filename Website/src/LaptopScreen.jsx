@@ -1,44 +1,111 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
+
+const LaptopScreen = () => {
+    const macScreenContentRef = useRef(null);
+    const altMacScreenContentRef = useRef(null);
 
 
+    useEffect(() => {
+        const footer = document.querySelector('#footer-container')?.closest('footer');
 
+        if (!footer) return;
 
+        const handleScroll = () => {
+            const footerTop = footer.getBoundingClientRect().top;
 
+            if (footerTop <= window.innerHeight) {
 
+                macScreenContentRef.current.style.display = 'none';
+                altMacScreenContentRef.current.style.display = 'flex';
 
-const LaptopScreen = () => (
-    <div  id='mac-screen'
-        style={{
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-            background: '#fdfdfb',
-            color: '#161616',
-            fontFamily: '"Space Grotesk", system-ui, sans-serif',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            gap: 24,
-        }}
-    >
-        <h1 id='mac-screen' style={{ margin: 0, maxWidth: 1000, fontSize: 64, lineHeight: 1.1, fontWeight: 600, color: '#000000'}}>
-            Hi.
-        </h1>
+            } else {
 
+                macScreenContentRef.current.style.display = 'flex';
+                altMacScreenContentRef.current.style.display = 'none';
+
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    return (
         <div
-            aria-hidden
-            data-glare
+            id="mac-screen"
             style={{
-                position: 'absolute',
-                inset: 0,
-                pointerEvents: 'none',
-                background:
-                    'linear-gradient(115deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 35%), radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.12) 100%)',
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                gap: 24,                fontFamily: '"Space Grotesk", system-ui, sans-serif',
             }}
-        />
-    </div>
-)
+        >
+            <div
+                id="mac-screen-content"
+                ref={macScreenContentRef}
+            >
+                <svg
+                    fill="var(--sub-theme-color)"
+                    width="200px"
+                    height="200px"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
+                </svg>
 
-export default LaptopScreen
+                <div id="appleBarBackground">
+                    <div id="appleBarProgress"></div>
+                </div>
+                <p>Intializing Script...</p>
+            </div>
+
+            <div
+                id="alt-mac-screen-content"
+                ref={altMacScreenContentRef}
+            >
+                
+                <svg
+                    fill="var(--sub-theme-color)"
+                    width="200px"
+                    height="200px"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
+                </svg>
+
+                <div id="altAppleBarBackground">
+                    <div id="altAppleBarProgress"></div>
+                </div>
+                <p>Script Completed, Logging out...</p>
+            </div>
+
+
+
+            <div
+                aria-hidden
+                data-glare
+                style={{
+                    position: 'absolute',
+                    inset: 0,
+                    pointerEvents: 'none',
+                    background:
+                        'linear-gradient(115deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 35%), radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.12) 100%)',
+                }}
+            />
+        </div>
+    );
+};
+
+export default LaptopScreen;

@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger)
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const lenis = new Lenis({
-  lerp: 0.1,             
+  lerp: 0.06,             
   smoothWheel: !reduceMotion,
   wheelMultiplier: 1,    
   touchMultiplier: 1,

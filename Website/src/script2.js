@@ -55,33 +55,36 @@ const sideButtons = document.querySelector('#side-buttons');
 const darkModeButton = document.querySelector('#dark-Mode-button');
 const header = document.querySelector('header');
 const root = document.documentElement;
-const heroSection = document.querySelector('#hero-section')
+const heroSection = document.querySelector('#hero-section');
+const heroSectionPanel = document.querySelector('#hero-section-left-panel');
 const PrimaryBodyContent = document.querySelector('#primary-body-content');
 const office5 = document.querySelector('#office5')
 
 window.addEventListener('scroll', () => {
-  const triggerPosition = heroSection.offsetTop - 0;
+  const triggerPosition = heroSection.offsetTop;
 
   if (window.scrollY > triggerPosition && window.scrollY < office5.offsetTop) {
     macImmersionEle.classList.add('visible');
     header.classList.add('visible');
     sideButtons.classList.add('visible');
     PrimaryBodyContent.classList.add('visible');
+    heroSectionPanel.classList.add('visible');
 
   } else {
     macImmersionEle.classList.remove('visible');
     header.classList.remove('visible');
     sideButtons.classList.remove('visible');
     PrimaryBodyContent.classList.remove('visible');
+    heroSectionPanel.classList.remove('visible');
   }
 });
 
 
 const applyTheme = (theme) => {
   if (theme === 'dark') {
-    root.classList.remove('dark-Mode');
-  } else {
     root.classList.add('dark-Mode');
+  } else {
+    root.classList.remove('dark-Mode');
   }
 };
 
@@ -91,7 +94,7 @@ const getInitialTheme = () => {
   if (savedTheme) {
     return savedTheme;
   }
-  
+
   const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   return userPrefersDark ? 'dark' : 'light';
 };
@@ -100,9 +103,9 @@ let currentTheme = getInitialTheme();
 applyTheme(currentTheme);
 
 darkModeButton.addEventListener('click', () => {
-  if(currentTheme === 'dark'){
+  if (currentTheme === 'dark') {
     currentTheme = 'light';
-  }else{
+  } else {
     currentTheme = 'dark';
   }
   localStorage.setItem('theme', currentTheme);
@@ -150,48 +153,95 @@ const form = document.getElementById('form');
 const submitBtn = form.querySelector('button[type="submit"]');
 
 form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(form);
-    formData.append("access_key", "c70e286e-2f8e-4f23-aeae-92a70f63c62a");
+  const formData = new FormData(form);
+  formData.append("access_key", "c70e286e-2f8e-4f23-aeae-92a70f63c62a");
 
-    const originalText = submitBtn.textContent;
+  const originalText = submitBtn.textContent;
 
-    submitBtn.textContent = "Sending...";
-    submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
+  submitBtn.disabled = true;
 
-    try {
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
-        });
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
 
-        const data = await response.json();
+    const data = await response.json();
 
-        if (response.ok) {
-            submitBtn.textContent = "Success!"
-            form.reset();
-        } else {
-          submitBtn.textContent = "Error!"
-            
-        }
+    if (response.ok) {
+      submitBtn.textContent = "Success!"
+      form.reset();
+    } else {
+      submitBtn.textContent = "Error!"
 
-    } catch (error) {
-        alert("Something went wrong. Please try again.");
-    } finally {
-
-        setTimeout(()=>{
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        }, 2000)
     }
+
+  } catch (error) {
+    alert("Something went wrong. Please try again.");
+  } finally {
+
+    setTimeout(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }, 2000)
+  }
 });
 
 
 
-document.querySelector('.Contactme').addEventListener('click', () => {
-  document.querySelector('#footer-container').scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
+document.querySelectorAll('[data-scroll-target]').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.getElementById(button.dataset.scrollTarget)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+const btn = document.getElementById('videoBtn');
+const video = document.getElementById('demoVideo');
+const altBodySectionHeading = document.getElementById('alt-body-section-heading');
+let played = false;
+
+btn.addEventListener('click', (e) => {
+  if (played) return;          // after the video, behave as a normal link
+  e.preventDefault();          // stop "#" navigation
+
+  btn.textContent = 'Loading...';
+
+  video.style.display = 'block';
+  video.controls = false;      // no controls
+  video.loop = false;          // play once
+  video.play();
+
+  btn.classList.add('disabled');          // Bootstrap disabled look
+  btn.style.pointerEvents = 'none';       // block clicks while playing
+});
+
+video.addEventListener('ended', () => {
+  played = true;
+  altBodySectionHeading.textContent = 'Just Kidding!';
+  btn.textContent = 'View Source on Github';
+  btn.href = 'https://github.com/chahalarsh/chahalarsh'; // new link
+  btn.target = '_blank';
+  btn.rel = 'noopener noreferrer';
+  btn.classList.remove('disabled');
+  btn.style.pointerEvents = '';
+  video.style.display = 'none';
+});
+
+
