@@ -50,25 +50,29 @@ workBoxes.forEach(workBox => {
 
 
 
-const triggerDiv = document.querySelector('#hero-section');
 const macImmersionEle = document.querySelector('#macImmersion');
 const sideButtons = document.querySelector('#side-buttons');
 const darkModeButton = document.querySelector('#dark-Mode-button');
 const header = document.querySelector('header');
 const root = document.documentElement;
+const heroSection = document.querySelector('#hero-section')
+const PrimaryBodyContent = document.querySelector('#primary-body-content');
+const office5 = document.querySelector('#office5')
 
 window.addEventListener('scroll', () => {
-  const triggerPosition = triggerDiv.offsetTop - 100;
+  const triggerPosition = heroSection.offsetTop - 0;
 
-  if (window.scrollY > triggerPosition) {
+  if (window.scrollY > triggerPosition && window.scrollY < office5.offsetTop) {
     macImmersionEle.classList.add('visible');
     header.classList.add('visible');
     sideButtons.classList.add('visible');
+    PrimaryBodyContent.classList.add('visible');
 
   } else {
     macImmersionEle.classList.remove('visible');
     header.classList.remove('visible');
     sideButtons.classList.remove('visible');
+    PrimaryBodyContent.classList.remove('visible');
   }
 });
 
@@ -126,6 +130,17 @@ if (typeof window.DisableDevtool === 'function') {
     }
   });
 }
+
+const scrollGuide = document.querySelector('#scroll-down-guide-container');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 5) {
+    scrollGuide.classList.add('visible');
+  } else {
+    scrollGuide.classList.remove('visible');
+  }
+});
+
 
 
 
