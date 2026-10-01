@@ -393,7 +393,7 @@ header {
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-#hero-section-left-panel.visible{
+#hero-section-left-panel.visible {
     opacity: 1;
     visibility: visible;
 }
@@ -516,9 +516,22 @@ header {
     grid-area: nums;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     gap: 8px;
+
+    padding: auto;
+    margin: auto;
+
+    * {
+        height: 33%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
 }
 
 #stat4>h1 {
@@ -529,6 +542,67 @@ header {
 #stat6 {
     grid-area: a;
     min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 24px;
+    padding: clamp(20px, 3vw, 36px);
+    text-align: left;
+}
+
+.stat6-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.stat6-eyebrow,
+.stat6-area-label {
+    color: var(--sub-font-color);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+#stat6 h2 {
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+.stat6-description {
+    color: var(--sub-font-color);
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    line-height: 1.5;
+    max-width: 38ch;
+}
+
+#stat6 .btn {
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.stat6-areas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--general-border-color);
+}
+
+.stat6-area {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.stat6-area-value {
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    font-weight: 600;
+    overflow-wrap: anywhere;
 }
 
 #stat7 {
@@ -619,7 +693,8 @@ header {
 }
 
 canvas {
-  filter: saturate(1.5) !important; /* 1.0 is default. 1.5 increases saturation by 50% */
+    filter: saturate(1.5) !important;
+    /* 1.0 is default. 1.5 increases saturation by 50% */
 }
 
 #skills-section-element-container {
@@ -1211,7 +1286,7 @@ header.visible,
 }
 
 
-#alt-mac-screen-content{
+#alt-mac-screen-content {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -1268,6 +1343,7 @@ header.visible,
 
 /* hover only where a real hover exists (avoids sticky hover on touch) */
 @media (hover: hover) {
+
     #nav-links a:hover,
     #nav-links button:hover {
         background-color: var(--surface-hover);
