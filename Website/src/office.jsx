@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { createRoot } from 'react-dom/client'
 import { useThree, useFrame } from '@react-three/fiber'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useGLTF, useAnimations, Environment, Lightformer, ContactShadows, Sparkles } from '@react-three/drei'
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
@@ -68,6 +68,14 @@ const Office = () => {
         camera.fov = FOV_START
         camera.updateProjectionMatrix()
     }, [camera])
+
+    useLayoutEffect(() => {
+        gl.toneMapping = THREE.ACESFilmicToneMapping
+        gl.toneMappingExposure = 1.2
+        gl.outputColorSpace = THREE.SRGBColorSpace
+        gl.shadowMap.enabled = true
+        gl.shadowMap.type = THREE.PCFSoftShadowMap
+    }, [gl])
 
     useEffect(() => {
         const action = actions['EmptyAction.001']
@@ -351,11 +359,11 @@ const Office = () => {
         closeTl.fromTo(scrollProgress, { current: 1 }, { current: 0, duration: 1.5, immediateRender: false }, 0.9)
 
         closeTl.fromTo(
-    camera.position,
-    { x: 0.5, y: 2.72, z: -1.2 },
-    { x: 1.7, y: 2.82, z: 0.6, duration: 1.8, ease: 'sine.inOut', immediateRender: false },
-    0.9
-)
+            camera.position,
+            { x: 0.5, y: 2.72, z: -1.2 },
+            { x: 1.7, y: 2.82, z: 0.6, duration: 1.8, ease: 'sine.inOut', immediateRender: false },
+            0.9
+        )
 
 
     }, [])
@@ -372,12 +380,10 @@ const Office = () => {
         <>
             <primitive object={model.scene} position={[0, 0, 0]} scale={[1, 1, 1]} />
 
-            <ambientLight intensity={0.02} />
+              <pointLight position={[-3, 1.5, 0]} intensity={5} color={'#ffffff'} distance={9} decay={2} />
+            <pointLight  position={[3, 2.5, 1]} intensity={8} color={'#ffffff'} distance={10} decay={2} />
+             <pointLight position={[0.5, 1.4, 1.2]} intensity={3} color="#e6eeff" distance={4} decay={2} />
 
-            <pointLight position={[-3, 1.5, 0]} intensity={5} color="#ff00ff" distance={8} decay={2} />
-            <ambientLight intensity={0.5} color="#e4daab" distance={8} decay={2}  />
-
-            <pointLight position={[3.5, 3, 1]} intensity={35} color="#dee2c6" distance={8} decay={2} />
         </>
     )
 }
