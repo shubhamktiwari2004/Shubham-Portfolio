@@ -399,7 +399,7 @@ header {
 }
 
 .hero-text {
-    font-size: clamp(28px, 5.2vw, 56px);
+    font-size: clamp(28px, 6.2vw, 75px);
     line-height: 1.15;
     margin: 0 0 16px;
 }
