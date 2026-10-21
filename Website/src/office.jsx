@@ -2,14 +2,16 @@ import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { createRoot } from 'react-dom/client'
 import { useThree, useFrame } from '@react-three/fiber'
-import { useGLTF, useAnimations, Environment, Lightformer, ContactShadows, Sparkles } from '@react-three/drei'
+import { useGLTF, useAnimations, Environment, Lightformer, ContactShadows, Sparkles, OrbitControls } from '@react-three/drei'
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import LaptopScreen from './LaptopScreen'
 
 gsap.registerPlugin(ScrollTrigger)
+RectAreaLightUniformsLib.init();
 
 const SCREEN_MATERIAL = 'Display.002'
 const SCREEN_PX_W = 1440
@@ -85,6 +87,14 @@ const Office = () => {
         clipDuration.current = action.getClip().duration
         ScrollTrigger.refresh()
     }, [actions])
+
+
+    const lightRef = useRef();
+
+    useEffect(() => {
+        // Aim the light at your object
+        lightRef.current?.lookAt(0, 0, 0);
+    }, []);
 
     // ---------------------------------------------------------------------
     // Laptop screen: CSS3D content + DOM overlay that expands to the viewport
@@ -324,15 +334,16 @@ const Office = () => {
         })
 
 
-        tl.to(scrollProgress, { current: 1, duration: 1.5 }, 0.5)
+        tl.to(scrollProgress, { current: 1, duration: 1 }, 1)
 
         // slow drift in, then a rush toward the laptop
         tl.to(camera.position, { x: 0.5, y: 2.72, z: -1.2, duration: 2.15, ease: 'power2.inOut' }, 0)
 
+
         // lens widens as we get close
         tl.to(fov.current, { v: FOV_END, duration: 2, ease: 'power2.in' }, 0)
 
-        tl.to(camera.rotation, { y: 0, z: 0, duration: 1.5 }, 0.5)
+        tl.to(camera.rotation, { y: 0, z: 0, duration: 1 }, 1)
 
         tl.to(expand, { current: 1, duration: EXPAND_DURATION }, 2.15)
 
@@ -380,9 +391,10 @@ const Office = () => {
         <>
             <primitive object={model.scene} position={[0, 0, 0]} scale={[1, 1, 1]} />
 
-              <pointLight position={[-3, 1.5, 0]} intensity={5} color={'#ffffff'} distance={9} decay={2} />
-            <pointLight  position={[3, 2.5, 1]} intensity={8} color={'#ffffff'} distance={10} decay={2} />
-             <pointLight position={[0.5, 1.4, 1.2]} intensity={3} color="#e6eeff" distance={4} decay={2} />
+            <pointLight position={[-3, 4.5, 0]} intensity={5} color={'#ffffff'} distance={9} decay={2} />
+            <pointLight position={[3, 4.5, 1]} intensity={8} color={'#ffe7cc'} distance={10} decay={2} />
+            <rectAreaLight ref={lightRef} position={[0.5, 3.72, -1.2]} width={4} height={3} intensity={1} color="#ffffff"/>
+
 
         </>
     )

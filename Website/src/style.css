@@ -1265,7 +1265,7 @@ header.visible,
         height: 6px;
         border-radius: 9999px;
         background-color: var(--alt-border-color);
-        margin-top: 20px;
+        margin-top: 5px;
 
         display: flex;
         justify-content: start;
@@ -1297,7 +1297,7 @@ header.visible,
         height: 6px;
         border-radius: 9999px;
         background-color: var(--alt-border-color);
-        margin-top: 20px;
+        margin-top: 5px;
 
         display: flex;
         justify-content: start;
