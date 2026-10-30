@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="page-loading">
 
 <head>
     <meta charset="UTF-8" />
@@ -16,7 +16,7 @@
 
     <script type="module" src="/src/script2.js"></script>
     <script type="module" src="/src/main.jsx"></script>
-    <script src="https://cdn.jsdelivr.net/npm/disable-devtool"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/disable-devtool"></script> -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,21 @@
 
 <body>
 
-
+    <div id="page-loader" role="status" aria-live="polite">
+        <div class="page-loader-card">
+            <p class="page-loader-kicker">ARSHDEEP SINGH CHAHAL <span> / PORTFOLIO</span></p>
+            <h1>Charging up</h1>
+            <p class="page-loader-message">Getting the workspace ready<span class="loader-ellipsis"
+                    aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></p>
+            <div class="battery-loader">
+                <div class="battery-loader-level" id="page-loader-progress" role="progressbar"
+                    aria-label="Loading portfolio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+                <svg class="battery-loader-bolt" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M13.2 2.8 6.7 13h4.8l-.7 8.2L17.3 11h-4.8l.7-8.2Z" />
+                </svg>
+            </div>
+        </div>
+    </div>
 
     <div id="body-element-container">
 
@@ -101,19 +115,19 @@
 
         <div id="primary-body-content">
 
-            <div id="hero-section">
+            <div id="hero-section-wrap">
+                <div id="hero-trigger" aria-hidden="true"></div>
+                <div id="hero-section">
 
-                <div id="hero-section-left-panel">
+                    <div id="hero-section-left-panel">
 
+                        <h1 class="hero-text" id="hero-text-1">Hi, I'm
+                            <span id="hero-text-2">Arshdeep Singh.</span>
+                        </h1>
 
+                        <!-- <p id="hero-paragraph">I'm a computer science student and I build Stuff.</p>
 
-                    <h1 class="hero-text" id="hero-text-1">Hi, I'm 
-                        <span id="hero-text-2">Arshdeep Singh.</span> 
-                    </h1>
-
-                    <!-- <p id="hero-paragraph">I'm a computer science student and I build Stuff.</p>
-
-                     <div class="hero-tag-container">
+                        <div class="hero-tag-container">
                         <span class="hero-tag">#cpp</span>
                         <span class="hero-tag">#kotlin</span>
                         <span class="hero-tag">#javascript</span>
@@ -123,9 +137,8 @@
                         <button type="button" class="btn btn-primary hero-btn" data-scroll-target="Work-section">Take a look -></button>
                     </div> -->
 
+                    </div>
                 </div>
-
-
             </div>
 
             <div id="stats-section">

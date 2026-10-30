@@ -1,9 +1,22 @@
-import { StrictMode, Suspense } from 'react'
+import { StrictMode, Suspense, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import Office from './office.jsx'
 import { Canvas } from '@react-three/fiber'
+import { useProgress } from '@react-three/drei'
 import './lenis.js'
 import { GitHubCalendar } from "react-github-calendar"
+
+export const LoadingProgressReporter = () => {
+  const { active, progress } = useProgress()
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('site:load-progress', {
+      detail: { active, progress },
+    }))
+  }, [active, progress])
+
+  return null
+}
 
 createRoot(document.getElementById('office')).render(
   <StrictMode>
@@ -18,6 +31,7 @@ createRoot(document.getElementById('office')).render(
         outputColorSpace: 'srgb',
       }}
     >
+      <LoadingProgressReporter />
       <Suspense fallback={null}>
         <Office />
       </Suspense>

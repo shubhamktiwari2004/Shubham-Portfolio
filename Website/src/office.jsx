@@ -322,14 +322,23 @@ const Office = () => {
     // Scroll animation
     // ---------------------------------------------------------------------
     useGSAP(() => {
+        document.documentElement.style.setProperty('--login-progress', '0%')
+
         const tl = gsap.timeline({
             defaults: { ease: 'none' },
+            onUpdate() {
+                document.documentElement.style.setProperty('--login-progress', `${this.progress() * 100}%`)
+            },
             scrollTrigger: {
                 trigger: '#office',
-                endTrigger: '#hero-section',
+                endTrigger: '#hero-trigger',
                 start: 'top top',
                 end: 'top top',
                 scrub: 1,
+                invalidateOnRefresh: true,
+                onRefresh: (self) => {
+                    document.documentElement.style.setProperty('--login-progress', `${self.progress * 100}%`)
+                },
             },
         })
 
@@ -345,7 +354,12 @@ const Office = () => {
 
         tl.to(camera.rotation, { y: 0, z: 0, duration: 1 }, 1)
 
-        tl.to(expand, { current: 1, duration: EXPAND_DURATION }, 2.15)
+        tl.fromTo(
+            expand,
+            { current: 0 },
+            { current: 1, duration: EXPAND_DURATION, immediateRender: false },
+            2.15
+        )
 
 
 

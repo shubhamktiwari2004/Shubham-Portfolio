@@ -1,14 +1,103 @@
 
 
+const pageLoader = document.querySelector('#page-loader');
+const loaderProgress = document.querySelector('#page-loader-progress');
+const loaderStartedAt = performance.now();
+const loaderMinimumDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 200 : 650;
+let documentLoaded = document.readyState === 'complete';
+let sceneLoaded = false;
+let loaderDismissed = false;
+let loaderFallback;
+
+const updateLoaderProgress = (progress) => {
+  const percent = Math.max(0, Math.min(95, Math.round(progress * 0.95)));
+  document.documentElement.style.setProperty('--loader-progress', `${percent}%`);
+  loaderProgress.setAttribute('aria-valuenow', String(percent));
+};
+
+const dismissPageLoader = () => {
+  if (!documentLoaded || !sceneLoaded || loaderDismissed) return;
+  loaderDismissed = true;
+  window.clearTimeout(loaderFallback);
+
+  const remainingTime = Math.max(0, loaderMinimumDuration - (performance.now() - loaderStartedAt));
+  window.setTimeout(() => {
+    document.documentElement.style.setProperty('--loader-progress', '100%');
+    loaderProgress.setAttribute('aria-valuenow', '100');
+    pageLoader.classList.add('is-complete');
+
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('page-loading');
+      pageLoader.classList.add('is-hidden');
+      pageLoader.setAttribute('aria-hidden', 'true');
+    }, 350);
+  }, remainingTime);
+};
+
+window.addEventListener('load', () => {
+  documentLoaded = true;
+  dismissPageLoader();
+}, { once: true });
+
+window.addEventListener('site:load-progress', (event) => {
+  const { active, progress } = event.detail;
+  if (active || progress > 0) updateLoaderProgress(progress);
+
+  if (!active && progress >= 100) {
+    sceneLoaded = true;
+    dismissPageLoader();
+  }
+});
+
+if (documentLoaded) {
+  window.setTimeout(dismissPageLoader, 0);
+}
+
+loaderFallback = window.setTimeout(() => {
+  sceneLoaded = true;
+  dismissPageLoader();
+}, 10000);
+
 const workBoxes = document.querySelectorAll('.work-box');
 
-workBoxes.forEach(workBox => {
-  workBox.addEventListener('mouseover', () => {
-    workBoxes.forEach(p => p.classList.remove('is-open'));
-    workBox.classList.add('is-open');
+const setOpenWorkBox = (activeWorkBox) => {
+  workBoxes.forEach((workBox) => {
+    workBox.classList.toggle('is-open', workBox === activeWorkBox);
+  });
+};
+
+workBoxes.forEach((workBox) => {
+  workBox.addEventListener('mouseenter', () => {
+    setOpenWorkBox(workBox);
   });
 
+  workBox.addEventListener('focusin', () => {
+    setOpenWorkBox(workBox);
+  });
+
+  workBox.addEventListener('click', (event) => {
+    if (!event.target.closest('a')) {
+      setOpenWorkBox(workBox);
+    }
+  });
 });
+
+const workSection = document.querySelector('#Work-section');
+
+if (workSection && 'IntersectionObserver' in window) {
+  workSection.classList.add('work-section-reveal');
+
+  const workSectionObserver = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      workSection.classList.add('is-visible');
+      workSectionObserver.disconnect();
+    }
+  }, { threshold: 0.15 });
+
+  workSectionObserver.observe(workSection);
+} else {
+  workSection?.classList.add('is-visible');
+}
 
 
 
@@ -55,13 +144,13 @@ const sideButtons = document.querySelector('#side-buttons');
 const darkModeButton = document.querySelector('#dark-Mode-button');
 const header = document.querySelector('header');
 const root = document.documentElement;
-const heroSection = document.querySelector('#hero-section');
+const heroTrigger = document.querySelector('#hero-trigger');
 const heroSectionPanel = document.querySelector('#hero-section-left-panel');
 const PrimaryBodyContent = document.querySelector('#primary-body-content');
 const office5 = document.querySelector('#office5')
 
 window.addEventListener('scroll', () => {
-  const triggerPosition = heroSection.offsetTop;
+  const triggerPosition = heroTrigger.getBoundingClientRect().top + window.scrollY;
 
   if (window.scrollY > triggerPosition && window.scrollY < office5.offsetTop) {
     macImmersionEle.classList.add('visible');
@@ -243,5 +332,3 @@ video.addEventListener('ended', () => {
   btn.style.pointerEvents = '';
   video.style.display = 'none';
 });
-
-
