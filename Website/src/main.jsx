@@ -1,50 +1,39 @@
-import { StrictMode, Suspense, useEffect } from 'react'
+
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import Office from './office.jsx'
-import { Canvas } from '@react-three/fiber'
-import { useProgress } from '@react-three/drei'
 import './lenis.js'
 import { GitHubCalendar } from "react-github-calendar"
 
-export const LoadingProgressReporter = () => {
-  const { active, progress } = useProgress()
-
+// Notify the existing page loader that the scene is no longer required.
+const LoadingProgressReporter = () => {
   useEffect(() => {
     window.dispatchEvent(new CustomEvent('site:load-progress', {
-      detail: { active, progress },
+      detail: {
+        active: false,
+        progress: 100,
+      },
     }))
-  }, [active, progress])
+  }, [])
 
   return null
 }
 
-createRoot(document.getElementById('office')).render(
-  <StrictMode>
-    <Canvas
-      style={{ pointerEvents: 'none' }}
-      dpr={[1, 2]}
-      camera={{ position: [0, 0, 2.5], fov: 40 }}
-      shadows
-      gl={{
-        toneMapping: 3, 
-        toneMappingExposure: 0.8,
-        outputColorSpace: 'srgb',
-      }}
-    >
-      <LoadingProgressReporter />
-      <Suspense fallback={null}>
-        <Office />
-      </Suspense>
-    </Canvas>
-  </StrictMode>,
-)
+// Render GitHub contribution calendar
+const githubContainer = document.getElementById('stat1')
 
-createRoot(document.getElementById('stat1')).render(
-  <GitHubCalendar
-    username="chahalarsh"
-    colorScheme='light'
-    blockSize={14}
-    blockMargin={4}
-    fontSize={14}
-  />
-)
+if (githubContainer) {
+  createRoot(githubContainer).render(
+    <StrictMode>
+      <>
+        <LoadingProgressReporter />
+        <GitHubCalendar
+          username="shubhamktiwari2004"
+          colorScheme="light"
+          blockSize={14}
+          blockMargin={4}
+          fontSize={14}
+        />
+      </>
+    </StrictMode>
+  )
+}

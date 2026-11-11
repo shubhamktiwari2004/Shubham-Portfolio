@@ -139,33 +139,16 @@ if (workSection && 'IntersectionObserver' in window) {
 
 
 
-const macImmersionEle = document.querySelector('#macImmersion');
 const sideButtons = document.querySelector('#side-buttons');
 const darkModeButton = document.querySelector('#dark-Mode-button');
 const header = document.querySelector('header');
 const root = document.documentElement;
-const heroTrigger = document.querySelector('#hero-trigger');
 const heroSectionPanel = document.querySelector('#hero-section-left-panel');
 const PrimaryBodyContent = document.querySelector('#primary-body-content');
-const office5 = document.querySelector('#office5')
 
-window.addEventListener('scroll', () => {
-  const triggerPosition = heroTrigger.getBoundingClientRect().top + window.scrollY;
-
-  if (window.scrollY > triggerPosition && window.scrollY < office5.offsetTop) {
-    macImmersionEle.classList.add('visible');
-    header.classList.add('visible');
-    sideButtons.classList.add('visible');
-    PrimaryBodyContent.classList.add('visible');
-    heroSectionPanel.classList.add('visible');
-
-  } else {
-    macImmersionEle.classList.remove('visible');
-    header.classList.remove('visible');
-    sideButtons.classList.remove('visible');
-    PrimaryBodyContent.classList.remove('visible');
-    heroSectionPanel.classList.remove('visible');
-  }
+// Display portfolio immediately
+[header, sideButtons, PrimaryBodyContent, heroSectionPanel].forEach(el => {
+  el?.classList.add('visible');
 });
 
 
@@ -223,18 +206,6 @@ if (typeof window.DisableDevtool === 'function') {
   });
 }
 
-const scrollGuide = document.querySelector('#scroll-down-guide-container');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 5) {
-    scrollGuide.classList.add('visible');
-  } else {
-    scrollGuide.classList.remove('visible');
-  }
-});
-
-
-
 
 
 
@@ -245,7 +216,7 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const formData = new FormData(form);
-  formData.append("access_key", "c70e286e-2f8e-4f23-aeae-92a70f63c62a");
+  formData.append("access_key", "5b4a933f-a167-4190-ae6a-265a7b71e5b9");
 
   const originalText = submitBtn.textContent;
 
@@ -290,45 +261,3 @@ document.querySelectorAll('[data-scroll-target]').forEach((button) => {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-const btn = document.getElementById('videoBtn');
-const video = document.getElementById('demoVideo');
-const altBodySectionHeading = document.getElementById('alt-body-section-heading');
-let played = false;
-
-btn.addEventListener('click', (e) => {
-  if (played) return;          // after the video, behave as a normal link
-  e.preventDefault();          // stop "#" navigation
-
-  btn.textContent = 'Loading...';
-
-  video.style.display = 'block';
-  video.controls = false;      // no controls
-  video.loop = false;          // play once
-  video.play();
-
-  btn.classList.add('disabled');          // Bootstrap disabled look
-  btn.style.pointerEvents = 'none';       // block clicks while playing
-});
-
-video.addEventListener('ended', () => {
-  played = true;
-  altBodySectionHeading.textContent = 'Just Kidding!';
-  btn.textContent = 'View Source on Github';
-  btn.href = 'https://github.com/chahalarsh/chahalarsh'; // new link
-  btn.target = '_blank';
-  btn.rel = 'noopener noreferrer';
-  btn.classList.remove('disabled');
-  btn.style.pointerEvents = '';
-  video.style.display = 'none';
-});

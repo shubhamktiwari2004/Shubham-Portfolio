@@ -1312,191 +1312,15 @@ footer {
 /* =========================================================
    Scroll-intro scene
    ========================================================= */
-#office {
-    width: 100%;
-    height: 100;
-    height: 100lvh;
-    background-color: #020202;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    pointer-events: none;
-}
-
-#office2 {
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    pointer-events: none;
-}
-
-#office2 #scroll-down-guide-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    position: absolute;
-    bottom: calc(clamp(40px, 12vh, 100px) + var(--safe-bottom));
-    animation: float 1.5s ease-in-out infinite;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-
-    opacity: 1;
-    transform: translateY(0);
-    cursor: default;
-}
-
-#office2 #scroll-down-guide-container h1 {
-    color: #ffffff;
-    font-size: clamp(1.5rem, 4vw, 2rem);
-}
-
-#office2 #scroll-down-guide-container svg {
-    width: clamp(20px, 5vw, 50px);
-    height: auto;
-}
-
-#office2 #scroll-down-guide-container.visible {
-    opacity: 0;
-    transform: translateY(-20px);
-    pointer-events: none;
-}
-
-#office3 {
-    width: 100%;
-    height: 250vh;
-    height: 250svh;
-    pointer-events: none;
-}
-
-#office5 {
-    width: 100%;
-    height: 250vh;
-    height: 250svh;
-    pointer-events: none;
-
-    display: flex;
-    justify-content: center;
-    position: relative;
-    align-items: center;
-
-    view-timeline: --logOut block;
-
-    #scroll-Up-guide-container {
-        animation: float 1.5s ease-in-out infinite;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        position: absolute;
-        bottom: calc(clamp(40px, 12vh, 100px) + var(--safe-bottom));
-
-        padding-bottom: 5%;
 
 
-        h1 {
-            color: #ffffff;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-        }
 
-        svg {
-            rotate: 180deg;
-            width: clamp(20px, 5vw, 50px);
-            height: auto;
-        }
-    }
-}
-
-#macImmersion {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    height: calc(100% + 40px);
-    width: calc(100% + 40px);
-    z-index: 1001;
-    margin: -20px;
-
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-#macImmersion #macBorder {
-    height: 100%;
-    width: 100%;
-    border: clamp(14px, 2vw, 30px) solid black;
-    border-radius: clamp(24px, 4vw, 50px);
-
-    transform: scale(1.6);
-    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: transform;
-}
-
-#macImmersion #macTopBar {
-    display: flex;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    z-index: -1;
-
-    height: 40px;
-    width: 100%;
-
-    background-color: color-mix(in srgb, var(--body-color) 80%, transparent);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-
-    transform: translateY(-100%);
-    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
-    will-change: transform;
-}
-
-#macImmersion #macNotch {
-    height: 100%;
-    width: 200px;
-    background-color: black;
-    border-radius: 0 0 15px 15px;
-}
-
-#macImmersion.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-#macImmersion.visible #macBorder {
-    transform: scale(1);
-}
-
-#macImmersion.visible #macTopBar {
-    transform: translateY(0);
-}
 
 header.visible,
 #side-buttons.visible,
 #primary-body-content.visible {
     opacity: 1;
     visibility: visible;
-}
-
-#mac-screen {
-    background-color: var(--body-color) !important;
-
-    h1 {
-        color: var(--sub-theme-color) !important;
-    }
 }
 
 /* =========================================================
@@ -1835,10 +1659,6 @@ header.visible,
         top: calc(var(--safe-top) + 8px);
         padding-block: 8px;
     }
-
-    #office2 #scroll-down-guide-container {
-        bottom: 16px;
-    }
 }
 
 /* Notched phones in landscape */
@@ -1859,13 +1679,8 @@ header.visible,
 
 /* Print */
 @media print {
-
     header,
-    #side-buttons,
-    #macImmersion,
-    #office,
-    #office2,
-    #office3 {
+    #side-buttons {
         display: none !important;
     }
 
@@ -1888,5 +1703,120 @@ header.visible,
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         transition-delay: 0ms !important;
+    }
+}
+
+
+/* =================================
+   SHUBHAM TIWARI - PAGE LOADER
+================================= */
+
+#page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #080b12;
+    color: #ffffff;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader-card {
+    width: min(90%, 520px);
+    text-align: center;
+}
+
+.page-loader-kicker {
+    margin-bottom: 32px;
+    color: #60A5FA;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+
+.page-loader-kicker span {
+    color: #858b99;
+}
+
+.wave-loader-name {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(32px, 7vw, 54px);
+    font-weight: 700;
+    letter-spacing: -2px;
+}
+
+.wave-loader-name > span {
+    display: inline-block;
+}
+
+.wave-loader-name > span > span:not(.name-space) {
+    display: inline-block;
+    animation: nameWave 1.2s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * 0.08s);
+    color: #ffffff;
+}
+
+.wave-loader-name > span > span:nth-child(1)  { --i: 0; }
+.wave-loader-name > span > span:nth-child(2)  { --i: 1; }
+.wave-loader-name > span > span:nth-child(3)  { --i: 2; }
+.wave-loader-name > span > span:nth-child(4)  { --i: 3; }
+.wave-loader-name > span > span:nth-child(5)  { --i: 4; }
+.wave-loader-name > span > span:nth-child(6)  { --i: 5; }
+.wave-loader-name > span > span:nth-child(7)  { --i: 6; }
+.wave-loader-name > span > span:nth-child(9)  { --i: 7; }
+.wave-loader-name > span > span:nth-child(10) { --i: 8; }
+.wave-loader-name > span > span:nth-child(11) { --i: 9; }
+.wave-loader-name > span > span:nth-child(12) { --i: 10; }
+.wave-loader-name > span > span:nth-child(13) { --i: 11; }
+.wave-loader-name > span > span:nth-child(14) { --i: 12; }
+
+@keyframes nameWave {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        color: #ffffff;
+    }
+
+    30% {
+        transform: translateY(-12px);
+        color: #60A5FA;
+    }
+}
+
+.name-space {
+    display: inline-block;
+    width: 12px;
+}
+
+.page-loader-message {
+    margin-top: 24px;
+    color: #929aaa;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.name-loader-track {
+    width: 220px;
+    height: 3px;
+    margin: 30px auto 0;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #252c39;
+}
+
+.name-loader-progress {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: #60A5FA;
+    transition: width 0.25s ease;
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.55)
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wave-loader-name > span > span:not(.name-space) {
+        animation: none;
     }
 }
