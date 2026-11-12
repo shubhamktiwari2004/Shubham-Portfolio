@@ -3,6 +3,8 @@ import { defineConfig } from 'vite'
 
 
 export default defineConfig({
-  base: '/Shubham-Portfolio/',
+  base: process.env.VERCEL === '1'
+    ? '/'
+    : '/Shubham-Portfolio/',
   plugins: [react()],
 })
