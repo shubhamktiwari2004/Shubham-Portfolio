@@ -1593,8 +1593,10 @@ header.visible,
         min-height: 120px;
     }
 
-    .react-activity-calendar__footer {
-        display: none !important;
+    .react-activity-calendar__legend-colors {
+        margin: 0 auto !important;
+        justify-content: center !important;
+        width: fit-content;
     }
 
     .work-box.is-open {
